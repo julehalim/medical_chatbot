@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Medical Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        #chat {
+            width: 100%;
+            max-width: 600px;
+            height: 450px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .message {
+            margin: 8px 0;
+            max-width: 75%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+        }
+        .user {
+            background: #3498db;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .bot {
+            background: #ecf0f1;
+            color: #333;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+        #inputArea {
+            display: flex;
+            width: 100%;
+            max-width: 600px;
+        }
+        #message {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        button {
+            padding: 12px 20px;
+            border: none;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h2>Medical Chatbot</h2>
+    <div id="chat"></div>
+    <div id="inputArea">
+        <input type="text" id="message" placeholder="Type your question..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        const chat = document.getElementById('chat');
+        const msgInput = document.getElementById('message');
+        msgInput.focus();
+
+        async function sendMessage() {
+            const message = msgInput.value.trim();
+            if (!message) return;
+
+            addMessage('user', message);
+            msgInput.value = '';
+            msgInput.focus();
+
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_message: message })
+                });
+                const data = await response.json();
+                addMessage('bot', data.answer || "No response");
+            } catch (err) {
+                addMessage('bot', "Error contacting server");
+            }
+        }
+
+        function addMessage(sender, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}`;
+            msgDiv.textContent = text;
+            chat.appendChild(msgDiv);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        msgInput.addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
