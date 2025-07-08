@@ -24,7 +24,7 @@ This chatbot does *not* diagnose or provide medical treatment. It only gives gen
 
 ## 🖼️ Screenshot
 
-![Chatbot Screenshot](./screenshot.png)
+![Chatbot Screenshot](./medicalchatbot.png)
 
 ---
 
