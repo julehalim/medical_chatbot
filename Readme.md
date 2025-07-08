@@ -33,14 +33,14 @@ This chatbot does *not* diagnose or provide medical treatment. It only gives gen
 ### 1️⃣ Clone the repo
 
 ```bash
-git clone https://github.com/julehalim/medical-chatbot.git
+git clone https://github.com/julehalim/medical_chatbot.git
 cd medical-chatbot
 ```
 
 ### 2️⃣ Build & run with Docker
 
 ```bash
-docker build -t medical-chatbot .
+docker build -t medical_chatbot .
 docker run -p 8000:8000 \
   -e AZURE_CLIENT_ID=your-client-id \
   -e AZURE_TENANT_ID=your-tenant-id \
