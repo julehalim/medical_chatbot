@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: medical-chatbot
+    env: docker
+    dockerfilePath: ./Dockerfile
+    branch: main
+    plan: free
+    envVars:
+      - key: AZURE_CLIENT_ID
+        fromSecret: AZURE_CLIENT_ID
+      - key: AZURE_TENANT_ID
+        fromSecret: AZURE_TENANT_ID
+      - key: AZURE_CLIENT_SECRET
+        fromSecret: AZURE_CLIENT_SECRET
+    healthCheckPath: /
+    autoDeploy: true
