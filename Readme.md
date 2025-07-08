@@ -18,7 +18,7 @@ This chatbot does *not* diagnose or provide medical treatment. It only gives gen
 
 ## 🌐 Live deployment
 
-🔗 [Visit the chatbot on Render]([https://your-render-url.onrender.com](https://medical-chatbot-7jx3.onrender.com))  
+🔗 [Visit the chatbot on Render](https://medical-chatbot-7jx3.onrender.com)  
 
 ---
 
@@ -33,7 +33,7 @@ This chatbot does *not* diagnose or provide medical treatment. It only gives gen
 ### 1️⃣ Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/medical-chatbot.git
+git clone https://github.com/julehalim/medical-chatbot.git
 cd medical-chatbot
 ```
 
